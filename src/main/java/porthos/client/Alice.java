@@ -1,6 +1,5 @@
 package porthos.client;
 
-import java.math.BigInteger;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
@@ -10,8 +9,8 @@ import org.web3j.protocol.Web3j;
 import org.web3j.tx.Contract;
 import org.web3j.tx.ManagedTransaction;
 
+import porthos.Constants.Blockchain;
 import porthos.ethereum.Web3jManager;
-import porthos.ethereum.Web3jManager.Blockchain;
 import porthos.ethereum.contracts.generated.Ethereum_2;
 
 public class Alice {
@@ -31,7 +30,7 @@ public class Alice {
 		
 		Ethereum_2 t2 = Ethereum_2.load(t2Address, web3j, aliceCredentials, ManagedTransaction.GAS_PRICE, Contract.GAS_LIMIT);
 		
-		t2.c2_commit("GBP", new BigInteger("100"), bobAddress).send();
+//		t2.c2_commit("GBP", new BigInteger("100"), bobAddress).send();
 		log.info("Alice's commit is complete");
 
 	}

@@ -5,11 +5,10 @@ import java.util.Map;
 
 import org.web3j.crypto.Credentials;
 
+import porthos.Constants.Blockchain;
+
 
 public class Web3jManager {
-
-
-	public enum Blockchain {ETHEREUM_1, ETHEREUM_2};
 
 	private static Map<Blockchain, Web3jInstance> systems = new HashMap<Blockchain, Web3jInstance>();
 

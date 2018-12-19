@@ -13,22 +13,23 @@ charlie = Participant {name="charlie", address="0xb9f62ffe791ff9fa9c51722e3b833b
 
 
 mem :: ChainToLang
-mem = update (update initMem ("Ethereum_1", Solidity)) ("Ethereum_2", Solidity)
+mem = update (update (update initMem ("Ethereum_1", Solidity)) ("Ethereum_2", Solidity)) ("Hyperledger", Chaincode)
 
 
 data MyAssetType = Apple | Orange
   deriving (Show, Eq)
 
 instance AssetType MyAssetType where
-  chainOf _ = "Ethereum_1"
+  chainOf Apple = "Ethereum_1"
+  chainOf Orange = "Hyperledger"
 
 -- Atomic Swap
 swap :: (Participant, Asset MyAssetType) -> (Participant, Asset MyAssetType) -> Contract
-swap (p1, a1) (p2, a2) = onUserCommit "p1Commit" (EUR, (isCommitTo p2 .&. isAsset a1))
+swap (p1, a1) (p2, a2) = onUserCommit "p1Commit" (Apple, (isCommitTo p2 .&. isAsset a1))
                            doP2Commit 
                            (onTimeout 10 end)
   where
-    doP2Commit = onUserCommit "p2Commit" (GBP, (isCommitTo p1 .&. isAsset a2 .&. isCommitBy p2))
+    doP2Commit = onUserCommit "p2Commit" (Orange, (isCommitTo p1 .&. isAsset a2 .&. isCommitBy p2))
                     (releaseAll end)
                     (onTimeout 20 (cancelAll end))
 
@@ -180,7 +181,7 @@ t5 = ifThenElse (sumC(USD, commitments) .<=. asset (USD, 100)) (c1, c2)
 
 -- just an example on how to instantiate contracts
 runExample :: IO[()]
-runExample = toScreen mem t3
+runExample = toFiles mem (swap (alice, asset(Apple, 1)) (bob, asset (Orange, 2)))
 
 
 

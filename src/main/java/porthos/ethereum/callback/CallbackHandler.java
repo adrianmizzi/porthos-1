@@ -14,9 +14,9 @@ import org.web3j.protocol.core.methods.request.EthFilter;
 import org.web3j.tx.Contract;
 import org.web3j.tx.ManagedTransaction;
 
+import porthos.Constants.Blockchain;
 import porthos.ethereum.Web3jInstance;
 import porthos.ethereum.Web3jManager;
-import porthos.ethereum.Web3jManager.Blockchain;
 import porthos.ethereum.contracts.generated.Gateway;
 
 

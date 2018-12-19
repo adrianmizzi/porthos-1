@@ -1,6 +1,5 @@
 package porthos.client;
 
-import java.math.BigInteger;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
@@ -10,8 +9,8 @@ import org.web3j.protocol.Web3j;
 import org.web3j.tx.Contract;
 import org.web3j.tx.ManagedTransaction;
 
+import porthos.Constants.Blockchain;
 import porthos.ethereum.Web3jManager;
-import porthos.ethereum.Web3jManager.Blockchain;
 import porthos.ethereum.contracts.generated.Ethereum_1;
 
 public class Charlie {
@@ -31,7 +30,7 @@ public class Charlie {
 		
 		Ethereum_1 t2 = Ethereum_1.load(t2Address, web3j, charlieCredentials, ManagedTransaction.GAS_PRICE, Contract.GAS_LIMIT);
 		
-		t2.c3_commit("EUR", new BigInteger("100"), bobAddress).send();
+//		t2.c3_commit("EUR", new BigInteger("100"), bobAddress).send();
 		
 		log.info("Charlie's commit is complete");
 	}

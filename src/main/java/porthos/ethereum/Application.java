@@ -11,9 +11,9 @@ import org.web3j.protocol.Web3j;
 import org.web3j.tx.Contract;
 import org.web3j.tx.ManagedTransaction;
 
-import porthos.ethereum.Web3jManager.Blockchain;
+import porthos.Constants.Blockchain;
 import porthos.ethereum.callback.CallbackHandler;
-import porthos.ethereum.comms.CommsChannel;
+import porthos.ethereum.comms.EthCommsChannel;
 import porthos.ethereum.comms.LogEventListener;
 import porthos.ethereum.contracts.generated.Ethereum_1;
 import porthos.ethereum.contracts.generated.Ethereum_2;
@@ -41,16 +41,16 @@ public class Application {
 			log.info("Initialising Callback Handler on Chain 2");
 			new CallbackHandler(Blockchain.ETHEREUM_2, gateway2);
 
-			// initialise the log event listenres on Ethereum 1
+			// initialise the log event listeners on Ethereum 1
 			log.info("Initialising Log Event Listener on Chain 1");
 			new LogEventListener(Blockchain.ETHEREUM_1, gateway1);
 
-			// initialise the log event listenres on Ethereum 1
+			// initialise the log event listeners on Ethereum 2
 			log.info("Initialising Log Event Listener on Chain 2");
 			new LogEventListener(Blockchain.ETHEREUM_2, gateway2);
 
 			// initialise the comms channel
-			CommsChannel comms = new CommsChannel();
+			EthCommsChannel comms = EthCommsChannel.getInstance();
 			comms.registerGateway(Blockchain.ETHEREUM_1, gateway1);
 			comms.registerGateway(Blockchain.ETHEREUM_2, gateway2);
 

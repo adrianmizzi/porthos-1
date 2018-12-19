@@ -148,7 +148,7 @@ data CommitmentField = CParticipantField |
 
 type Blockchain = String
 
-data Language = Solidity | ChainCode
+data Language = Solidity | Chaincode
   deriving (Show, Eq)
 
 type ChainToLang = Blockchain -> Language
