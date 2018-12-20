@@ -13,7 +13,6 @@ import org.hyperledger.fabric.sdk.Peer;
 import org.hyperledger.fabric.sdk.exception.CryptoException;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.TransactionException;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,7 +119,7 @@ public class HyperledgerEventListener extends Thread {
 						"\n, event payload: \""+new String(chaincodeEvent.getPayload())+"\"\n, from eventhub: " + es);
 						
 						if (chaincodeEvent.getEventName().equals("CCCEvent")) {
-							JSONObject jsonobject = new JSONObject(chaincodeEvent.getPayload());
+							JSONObject jsonobject = new JSONObject(new String(chaincodeEvent.getPayload()));
 						    String bcname = jsonobject.getString("masterBcName");
 						    String address = jsonobject.getString("masterContractAddress");
 						    String methodName = jsonobject.getString("methodName");
